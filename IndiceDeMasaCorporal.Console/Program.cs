@@ -1,22 +1,24 @@
 ﻿using System;
 
 class Individuo
-{
+{   //Datos de las personas
     public double Peso;
     public double Estatura;
 
+    //Constructor
     public Individuo(double peso, double estatura)
     {
         Peso = peso;
         Estatura = estatura;
     }
 
+    //Metodo para sacar el IMC
     public double Formula()
     {
         return Peso / (Estatura * Estatura);
     }
 
-
+    //Metodo para calcular el indice
     public string INDICE()
     {
         double IMC = Formula();
@@ -44,6 +46,7 @@ class Program
 {
     static void Main()
     {
+        //Datos que se le solicitan al usuario
         Console.WriteLine("Bienvenido, ingrese sus datos para conocer su IMC");
 
         Console.WriteLine("Ingrese su peso en kg: ");
@@ -52,8 +55,10 @@ class Program
         Console.WriteLine("Ingrese su estatura en m: ");
         double estatura = double.Parse(Console.ReadLine());
 
+        //Creacion de objeto y llamado del metodo
         Individuo persona1 = new Individuo (peso, estatura);
 
+        //Impresion
         Console.WriteLine($"Resultado: {persona1.INDICE()}");
 
 
