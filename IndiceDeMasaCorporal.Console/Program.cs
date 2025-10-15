@@ -1,67 +1,26 @@
-﻿using System;
+﻿using Imc.Model;
 
-class Individuo
-{   //Datos de las personas
-    public double Peso;
-    public double Estatura;
+Console.WriteLine("Aplicación que calcula el indice de masa corporal de una persona\n");
 
-    //Constructor
-    public Individuo(double peso, double estatura)
-    {
-        Peso = peso;
-        Estatura = estatura;
-    }
+decimal peso =
+    ReadDecimal("Proporcion el peso en kilogramos de la persona: ");
 
-    //Metodo para sacar el IMC
-    public double Formula()
-    {
-        return Peso / (Estatura * Estatura);
-    }
+decimal estatura =
+    ReadDecimal("Proporcion la estatura en metros de la persona: ");
 
-    //Metodo para calcular el indice
-    public string INDICE()
-    {
-        double IMC = Formula();
+decimal imc = IndiceDeMasaCorporalLib.IndiceDeMasaCorporal(peso, estatura);
 
-        if (IMC < 18.5)
-            return $"Su IMC es de {IMC} el estado nutricional es de peso bajo";
+Console.WriteLine(
+    $"El índice de masa coporal de la persona es: {imc:G6}");
+Console.WriteLine(
+    $"El estado nutricional de la persona es: {IndiceDeMasaCorporalLib.DeterminaEstadoNutricional(imc)}");
 
-        else if (IMC > 18.5 && IMC < 25)
-            return $"Su IMC es de {IMC} el estado nutricional es de peso normal";
+Console.WriteLine();
 
-        else if (IMC > 25 && IMC < 30)
-            return $"Su IMC es de {IMC} el estado nutricional es de sobre peso";
-
-        else if (IMC > 30 && IMC < 40)
-            return $"Su IMC es de {IMC} el estado nutricional es de Obesidad";
-
-        else if (IMC >= 40)
-            return $"Su IMC es de {IMC} el estado nutricional es de Obesidad Extrema";
-
-        else return "Ingrese un valor valido";
-    }
-}
-
-class Program
+static decimal ReadDecimal(string indicacion)
 {
-    static void Main()
-    {
-        //Datos que se le solicitan al usuario
-        Console.WriteLine("Bienvenido, ingrese sus datos para conocer su IMC");
-
-        Console.WriteLine("Ingrese su peso en kg: ");
-        double peso = double.Parse(Console.ReadLine());
-
-        Console.WriteLine("Ingrese su estatura en m: ");
-        double estatura = double.Parse(Console.ReadLine());
-
-        //Creacion de objeto y llamado del metodo
-        Individuo persona1 = new Individuo (peso, estatura);
-
-        //Impresion
-        Console.WriteLine($"Resultado: {persona1.INDICE()}");
-
-
-    }
+    Console.Write(indicacion);
+    var entradaComoTexto = Console.ReadLine();
+    return Convert.ToDecimal(entradaComoTexto);
 }
 
